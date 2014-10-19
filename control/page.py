@@ -14,7 +14,6 @@ site = 'http://www.cnblogs.com/'
 class page():
     '''
     import page
-
     result = page.page(href='www.baidu.com', parsefunc=parse())
     '''
     def __init__(self, href=site, parsefunc=None):
@@ -25,15 +24,14 @@ class page():
 
     def loadPage(self):
         try:
-            self.doc = urllib2.urlopen(site).read()
+            self.doc = urllib2.urlopen(self.href).read()
         except Exception as e:
             print 'urlopen error: ',e
             return ''
-        return self.parse(self.doc)
 
     def parse(self):
         self.loadPage()
-        self.parsefunc(self.doc)
+        return self.parsefunc(self.doc)
 
     def find(self, name='', attrs={}):
         soup = BeautifulSoup(self.doc, from_encoding='gbk')

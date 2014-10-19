@@ -2,14 +2,37 @@
 #-*- encoding:utf-8 -*-
 
 from apscheduler.schedulers.background import BackgroundScheduler
+from bs4 import BeautifulSoup
 import time
 import db
+import page
 
 def tick():
     f = open('control/test.log', 'w')
     f.write(time.ctime())
     f.close()
     print(time.ctime())
+
+def getmyblog():
+    def parse(doc):
+        soup = BeautifulSoup(doc)
+        blogs = soup.findAll(name='div', attrs={'class':'day'})
+        blog_list = []
+        for blog in blogs:
+            tmp = blog.select('.postTitle')[0].a
+            title = tmp.text
+            href = tmp['href']
+            #print title, href
+            summary = blog.select('.postCon')[0].text
+            #print summary
+            blog_list.append([title, href, summary])
+        return blog_list
+
+    site = 'http://www.cnblogs.com/coder2012/'
+    myblog = page.page(href=site, parsefunc=parse)
+    res = myblog.parse()
+    for item in res:
+        db.new_post(item[0], item[1], item[2])
 
 class timer:
     '''
@@ -43,7 +66,4 @@ def backgroundrunning(func=tick, args='', time=3, id='default'):
     a.run()
 
 if __name__ == '__main__':
-    backgroundrunning()
-
-    while True:
-        time.sleep(2)
+    getmyblog()

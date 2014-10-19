@@ -6,7 +6,7 @@ import urllib2
 def downlod(hrefs=[], savepath='static/', saveprefix='' , savesuffix=''):
     for href in hrefs:
         data = urllib2.urlopen(href).read()
-        imgname = href.splist('/')[-1]
+        imgname = href.split('/')[-1]
         if saveprefix != '':
             imgname = saveprefix + imgname
         if savesuffix != '':
@@ -16,4 +16,5 @@ def downlod(hrefs=[], savepath='static/', saveprefix='' , savesuffix=''):
         f.close()
 
 if __name__ == '__main__':
-    downlod()
+    downlod(hrefs=['http://images.cnitblog.com/blog/452899/201410/191236254192949.jpg'],
+            savepath='', saveprefix='111_', savesuffix='_22')

@@ -5,8 +5,8 @@ import datetime
 
 db = web.database(dbn='mysql', db='test', user='root', pw='123123')
 
-def new_post(title, content):
-    db.insert('news', title=title, content=content, posted_on=datetime.datetime.utcnow())
+def new_post(title, href, summary):
+    db.insert('myblog', title=title, summary=summary, href=href) #posted_on=datetime.datetime.utcnow()
 
 def get_post(id):
     try:
@@ -15,7 +15,7 @@ def get_post(id):
         return None
 
 def get_posts():
-    return db.select('news', order = 'id DESC')
+    return db.select('myblog')
 
 def del_post(id):
     db.delete('news', where = 'id = $id', vars = locals())
