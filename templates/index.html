@@ -1,4 +1,3 @@
-$def with(lines,name_img)
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -8,50 +7,43 @@ $def with(lines,name_img)
     <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-   <div >
-  <!-- nav start -->
-  <nav class="navbar navbar-default navbar-black navbar-fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand navbar-black-title" href="#0">导航栏</a>
-        <ul class="nav navbar-nav">
-            <li><a href="#img1">标签1</a></li>
-            <li><a href="#img2">标签2</a></li>
-            <li><a href="#img3">标签3</a></li>
-        </ul>
-    <!-- nav end -->
+    <div id="header">
+    <!-- nav start -->
+        <nav class="navbar navbar-default navbar-black navbar-fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand navbar-black-title" href="#">休闲小站</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="http://www.cnblogs.com/coder2012/">我的博客</a></li>
+                </ul>
+                <!-- nav end -->
+            </div>
+        </nav>
     </div>
-  </nav>
-  </div>
 
-  <!-- START THE CONTENT -->
-  <div class="content" >
-      <div class="row news" >
-          $for line in lines:
-              <div class="span3 well">
-                  <h2>$line[0]</h2>
-                  <a href="$line[1]"/>$line[1]</a>
-                  &b<p>$line[2]</p>
-              </div>
-      </div>
-      <div class="sidebar" >
-        <div id="example">
-            <ul>
-                $for name in name_img:
-                    $ id = name_img[name].split('/')[-1]
-                    $if id.find('=') != -1:
-                        $ id = id.split('=')[-1]+'.jpg'
-                    <li><img src="static/image/name_img/$id"/>$name</li>
-            </ul>
+    <!-- START THE CONTENT -->
+    <div id="content">
+        <div id="left_content" class="row">
+            <div id="example">
+                <ul>
+                $for i in range(10):
+                    <li>$i</li>
+                </ul>
+            </div>
+        <!-- END LEFT CONTENT -->
         </div>
-      </div>
-  </div> <!-- END CONTENT -->
 
-<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-      <script src="static/js/jquery.js"></script>
-      <!-- 包括所有已编译的插件 -->
-      <script src="static/js/bootstrap.min.js"></script>
-      <script src="static/js/jquery.vticker.min.js"></script>
-      <script type="text/javascript">
+        <div id="right_content">
+        <!-- END RIGHT CONTENT -->
+        </div>
+    <!-- END CONTENT -->
+    </div>
+
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script src="static/js/jquery.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.vticker.min.js"></script>
+    <script type="text/javascript">
         $$(function(){
             $$('#example').vTicker({
                 speed: 500,     //滚动速度，单位毫秒。
@@ -59,10 +51,10 @@ $def with(lines,name_img)
                 showItems: 10,      //显示内容的条数。
                 animation: 'fade',  //动画效果，默认是fade，淡出。
                 mousePause: true,   //鼠标移动到内容上是否暂停滚动，默认为true。
-                height: 235,        //滚动内容的高度。
+                height: 450 ,        //滚动内容的高度。
                 direction: 'up'     //滚动的方向，默认为up向上，down则为向下滚动。
             });
          });
-      </script>
-   </body>
+    </script>
+    </body>
 </html>

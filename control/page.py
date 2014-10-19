@@ -4,7 +4,7 @@
 import urllib2
 
 from bs4 import BeautifulSoup
-
+from log import log
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -13,11 +13,14 @@ site = 'http://www.cnblogs.com/'
 
 class page():
     '''
+    import page
+
+    result = page.page(href='www.baidu.com', parsefunc=parse())
     '''
-    def __init__(self, href=site):
-        page.href = href
-        page.doc = ''
-        page.title = ''
+    def __init__(self, href=site, parsefunc=None):
+        self.href = href
+        self.doc = ''
+        self.parsefunc = parsefunc
         self.loadPage()
 
     def loadPage(self):
@@ -26,29 +29,15 @@ class page():
         except Exception as e:
             print 'urlopen error: ',e
             return ''
+        return self.parse(self.doc)
 
     def parse(self):
-        res = []
+        self.loadPage()
+        self.parsefunc(self.doc)
+
+    def find(self, name='', attrs={}):
         soup = BeautifulSoup(self.doc, from_encoding='gbk')
-        f = open('page.log', 'w+')
-        f.write(soup.prettify())
-        f.close()
-        #print soup.title.string
-        newscontents = soup.findAll(name='div', attrs={'class':'post_item'})
-        for news in newscontents:
-            tmp = []
-            content = news.find(name='h3')
-            title = content.string
-            #print title
-            href = content.find('a').get('href')
-            #print href
-            summary = news.find(name='p').text
-            #print summary
-            tmp.append(title)
-            tmp.append(href)
-            tmp.append(summary)
-            res.append(tmp)
-        return res
+        result = soup.findAll(name=name, attrs=attrs)
 
 
 if __name__ == '__main__':

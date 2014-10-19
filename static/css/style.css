@@ -9,20 +9,22 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.content {
+#content {
     padding-top: 5%;
     padding-left: 5%;
     padding-right: 5%;
 }
 
-.news {
+#left_content {
     float: left;
     width: 75%;
     word-wrap:break-word;
+    display:inline;
 }
 
-.sidebar {
+#right_content {
     float: right;
     width: 25%;
     word-break:break-all;
+    display:inline;
 }
