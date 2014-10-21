@@ -2,8 +2,6 @@
 #-*- encoding:utf-8 -*-
 
 import web
-import model
-from control import timer
 
 urls = (
     '/','model.index',
