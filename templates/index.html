@@ -1,31 +1,53 @@
 {% extends '__base__.html' %}
 
-{% block title %}Main Page{% endblock %}
-
 {% block content %}
-    <div id="example">
-       <ul>
-           {% for item in list %}
-            <li><a href="{{ item[1] }}">
-            <h2>{{ item[0] }}</h2>
-            <p>{{ item[2] }}</p></a></li>
-        {% endfor %}
-       </ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2 breakworld">
+      <!--Sidebar content-->
+        <h2>蒙其·D·路飞</h2>
+        <p>路飞（Luffy）这名字源自英语“luff”，意即“迎风航行”，这是他想过最适合船长使用的名字。他也指出路飞生下来就是运势非凡的人；只有实力和运气兼备的人，才能成就伟大功业。</p>
+        <p>路飞是超人系“橡胶果实”能力者，全身拥有橡胶体质，在战斗中路飞利用发挥了这一体质，并在不断的战斗中升级自己的招式</p>
     </div>
+    <div class="span8 breakworld">
+        <!--Body content-->
+        <div class="row">
+            <div class="container">
+                <div class="banner">
+                    <ul style="margin: 0;padding: 0;">
+	                    <li><img src="static/image/1.jpg" style="background-size: 100%; width:100%;"/></li>
+	                    <li><img src="static/image/2.jpg" style="background-size: 100%; width:100%;"/></li>
+	                    <li><img src="static/image/3.jpg" style="background-size: 100%; width:100%;"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <h1>One Piece</h1>
+                <p>传奇海贼哥尔·D·罗杰在临死前曾留下关于其毕生的财富“One Piece”的消息，由此引得群雄并起，众海盗们为了这笔传说中的巨额财富展开争夺，各种势力、政权不断交替，整个世界进入了动荡混乱的“大海贼时代”。　生长在东海某小村庄的路飞受到海贼香克斯的精神指引，决定成为一名出色的海盗。为了达成这个目标，并找到万众瞩目的One Piece，路飞踏上艰苦的旅程。一路上他遇到了无数磨难，也结识了索隆、娜美、乌索普、香吉、罗宾等一众性格各异的好友。他们携手一同展开充满传奇色彩的大冒险。</p>
+            </div>
+        </div>
+    </div>
+    <div class="span2 breakworld">
+        <!--Sidebar content-->
+        <div class="pinned" style="height:128px;">
+        <ul class="right-nav nav" style="padding:10px 20px;">
+            <li><img src="static/image/onepiece.gif" /></li>
+            <li><a id="fixed-li" href="#">One Piece</a></li>
+            <!--li><a id="fixed-li" href="#">Piece</a></li-->
+        </ul>
+        </div>
+    </div>
+  </div>
+</div>
 {% endblock%}
 
 {% block script %}
-    <script type="text/javascript">
-        $(function(){
-            $('#example').vTicker({
-                speed: 1000,     //滚动速度，单位毫秒。
-                pause: 1000,        //暂停时间，就是滚动一条之后停留的时间，单位毫秒。
-                showItems: 4,      //显示内容的条数。
-                animation: 'fade',  //动画效果，默认是fade，淡出。
-                mousePause: true,   //鼠标移动到内容上是否暂停滚动，默认为true。
-                height: 400 ,        //滚动内容的高度。
-                direction: 'up'     //滚动的方向，默认为up向上，down则为向下滚动。
-            });
-         });
-    </script>
+<script src="static/js/jquery.pin.js" ></script>
+<script src="static/js/unslider.js"></script>
+<script>
+      $(".pinned").pin();
+      $(function() {
+            $('.banner').unslider();
+        });
+</script>
 {% endblock %}

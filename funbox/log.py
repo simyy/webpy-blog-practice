@@ -16,10 +16,10 @@ def init():
     debug = logging.StreamHandler()
     debug.setLevel(logging.DEBUG)
 
-    info = logging.FileHandler('run.log')
+    info = logging.FileHandler('/s/log/run.log')
     info.setLevel(logging.INFO)
 
-    error = logging.FileHandler('error.log')
+    error = logging.FileHandler('/s/log/error.log')
     error.setLevel(logging.ERROR)
 
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
