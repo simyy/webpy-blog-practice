@@ -1,53 +1,34 @@
 {% extends '__base__.html' %}
 
+
 {% block content %}
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span2 breakworld">
-      <!--Sidebar content-->
-        <h2>蒙其·D·路飞</h2>
-        <p>路飞（Luffy）这名字源自英语“luff”，意即“迎风航行”，这是他想过最适合船长使用的名字。他也指出路飞生下来就是运势非凡的人；只有实力和运气兼备的人，才能成就伟大功业。</p>
-        <p>路飞是超人系“橡胶果实”能力者，全身拥有橡胶体质，在战斗中路飞利用发挥了这一体质，并在不断的战斗中升级自己的招式</p>
-    </div>
-    <div class="span8 breakworld">
-        <!--Body content-->
-        <div class="row">
-            <div class="container">
-                <div class="banner">
-                    <ul style="margin: 0;padding: 0;">
-	                    <li><img src="static/image/1.jpg" style="background-size: 100%; width:100%;"/></li>
-	                    <li><img src="static/image/2.jpg" style="background-size: 100%; width:100%;"/></li>
-	                    <li><img src="static/image/3.jpg" style="background-size: 100%; width:100%;"/></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="container">
-                <h1>One Piece</h1>
-                <p>传奇海贼哥尔·D·罗杰在临死前曾留下关于其毕生的财富“One Piece”的消息，由此引得群雄并起，众海盗们为了这笔传说中的巨额财富展开争夺，各种势力、政权不断交替，整个世界进入了动荡混乱的“大海贼时代”。　生长在东海某小村庄的路飞受到海贼香克斯的精神指引，决定成为一名出色的海盗。为了达成这个目标，并找到万众瞩目的One Piece，路飞踏上艰苦的旅程。一路上他遇到了无数磨难，也结识了索隆、娜美、乌索普、香吉、罗宾等一众性格各异的好友。他们携手一同展开充满传奇色彩的大冒险。</p>
-            </div>
-        </div>
-    </div>
-    <div class="span2 breakworld">
+    <div class="row-fluid">
+        <div class="span2">
         <!--Sidebar content-->
-        <div class="pinned" style="height:128px;">
-        <ul class="right-nav nav" style="padding:10px 20px;">
-            <li><img src="static/image/onepiece.gif" /></li>
-            <li><a id="fixed-li" href="#">One Piece</a></li>
-            <!--li><a id="fixed-li" href="#">Piece</a></li-->
-        </ul>
+            <div style="text-align: center;">
+                <img src="static/image/touxiang.jpg" class="img-circle" width="50%"/>
+                <h3>cococo点点</h3>
+                <p>building blog</p>
+            </div>
+        </div>
+        <div class="span6">
+        <!--Sidebar content-->
+            {% for item in articles %}
+                <h1>{{item[2]}}</h1>
+                <p>{{item[3]}}<p>
+            {% endfor %}
+        </div>
+        <div class="span4">
+        <!--Sidebar content-->
+            123123
         </div>
     </div>
-  </div>
 </div>
-{% endblock%}
+
+
+{% endblock %}
+
 
 {% block script %}
-<script src="static/js/jquery.pin.js" ></script>
-<script src="static/js/unslider.js"></script>
-<script>
-      $(".pinned").pin();
-      $(function() {
-            $('.banner').unslider();
-        });
-</script>
 {% endblock %}

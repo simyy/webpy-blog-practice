@@ -2,11 +2,11 @@
 #-*- encoding:utf-8 -*-
 import os
 import sys
-
 import web
 from jinja2 import Environment,FileSystemLoader
 
-from funbox import db
+from funbox.db import db
+#from funbox.log import log
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -28,10 +28,34 @@ def render_template(template_name, **context):
 
 class index:
     def GET(self):
-        res = db.getContent()
+        db.query('select * from articletab')
+        res = db.fetchAllRows()
         print res
-        return render_template("index.html", list=res)
+        return render_template("index.html", articles=res)
 
+class test:
+    def GET(self):
+        return render_template("login.html")
 
+class edit:
+    def GET(self):
+        return render_template("edit.html")
+    def POST(self):
+        data = web.input(title='', summary='', contents='')
+        print data
+        return data
+
+class login:
+    def GET(self):
+        return render_template("login.html")
+    def POST(self):
+        data = web.input(email='', passwd='')
+        if data.email != '' and data.passwd != '':
+            db.query('select userPwd from usertab where userName=\'%s\''%data.email)
+            res = db.fetchOneRow()
+            if res != None and res[0] == data.passwd:
+                return render_template("index.html")
+            else:
+                return web.redirect('/login')
 
 

@@ -1,0 +1,126 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html,
+body {
+    height: 100%;
+    font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+    #push,
+    #footer {
+    height: 10%;
+}
+#footer {
+    background-color: #292f36;
+    color: rgba(255,255,255,0.6);
+    text-shadow: none;
+    font-size:15px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+#footer {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+}
+
+#header {
+    background-color: #292f36;
+    color: rgba(255,255,255,0.6);
+    text-shadow: none;
+    font-size:20px;
+    height:50px;
+    line-height:50px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+#header {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+#wrap > .container {
+    padding-top: 0px;
+}
+
+.container .credit {
+    margin: 20px 0;
+}
+
+code {
+    font-size: 80%;
+}
+
+.brand__forename {
+font-weight: bold;
+color: #4ecdc4;
+}
+
+#myScrollspy > ul.nav-tabs{
+    width: 140px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+#myScrollspy > ul.nav-tabs li{
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+#myScrollspy > ul.nav-tabs li:first-child{
+    border-top: none;
+}
+#myScrollspy > ul.nav-tabs li a{
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+#myScrollspy > ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+    color: #fff;
+    background: #0088cc;
+    border: 1px solid #0088cc;
+}
+#myScrollspy > ul.nav-tabs li:first-child a{
+    border-radius: 4px 4px 0 0;
+}
+#myScrollspy > ul.nav-tabs li:last-child a{
+    border-radius: 0 0 4px 4px;
+}
+#myScrollspy > ul.nav-tabs.affix{
+    top: 30px; /* Set the top position of pinned element */
+}
+
+.banner { position: relative; overflow: auto; }
+    .banner li { list-style: none; }
+        .banner ul li { float: left; }
+
+.tijiao {
+    margin-top: 10%;
+    width: 50%;
+    height: 20%;
+    background-color: #292f36;
+    color: rgba(255,255,255,0.6);
+    border: 2px 2px 2px 2px;
+    border-radius:15px;
+}

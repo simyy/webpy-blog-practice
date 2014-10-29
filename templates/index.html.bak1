@@ -1,0 +1,75 @@
+{% extends '__base__.html' %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="row">
+                <!--Body content-->
+                <div class="container">
+
+                </div>
+                <div class="container">
+                    <div class="banner">
+                        <ul>
+                            <li>
+                                <img src="static/image/unslider.png"/>
+                                <h2>Unslider</h2>
+                                <p>Unslider — 一个超小的 jQuery 轮播（slider） 插件。支持主流浏览器、键盘导航、自动调整高度和响应式布局。</p>
+                            </li>
+                            <li>
+                                <img src="static/image/jquery.pin.png"/>
+                                <h2>UjQuery.Pin</h2>
+                                <p>jQuery.Pin 能将任意页面元素“钉”在某个容器顶部，而且在尺寸小的屏幕上能够自动禁用这种效果。</p>
+                            </li>
+                            <li>
+                                <img src="static/image/headroom.png"/>
+                                <h2>Headroom.js</h2>
+                                <p>Headroom.js 是一个轻量级、纯 JavaScript 组件，用来隐藏或展现页面上的元素，为你的页面留下更多展示内容的空间。</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+            <!--Sidebar content-->
+            <div id="scroller">
+                <ul>
+                    <li><img src="static/image/1.png"/></li>
+                    <li><img src="static/image/2.png"/></li>
+                    <li><img src="static/image/3.png"/></li>
+                    <li><img src="static/image/4.png"/></li>
+                    <li><img src="static/image/6.png"/></li>
+                    <li><img src="static/image/7.png"/></li>
+                    <li><img src="static/image/8.png"/></li>
+                    <li><img src="static/image/9.png"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+    <script src="static/js/unslider.js"></script>
+    <script src="static/js/jquery.vticker.min.js"></script>
+    <script>
+        $(function() {
+            $('.banner').unslider();
+        });
+        $(function() {
+            $('#scroller').vTicker({
+                    speed: 500,        //滚动速度，单位毫秒。
+                    pause: 2000,       //暂停时间，就是滚动一条之后停留的时间，单位毫秒。
+                    showItems: 3,     //显示内容的条数。
+                    animation: 'fade', //动画效果，默认是fade，淡出。
+                    mousePause: true,  //鼠标移动到内容上是否暂停滚动，默认为true。
+                    height: 437,       //滚动内容的高度。
+                    direction: 'up'        //滚动的方向，默认为up向上，down则为向下滚动。
+                });
+            });
+    </script>
+{% endblock %}

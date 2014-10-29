@@ -1,0 +1,58 @@
+{% extends '__base__.html' %}
+
+{% block title %}
+blog edit
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+        <!--Sidebar content-->
+            <div>
+                11
+            </div>
+        </div>
+        <div class="span8" style="padding-top:2%;">
+        <!--Body content-->
+            <form id="myform" class="form-horizontal" action="/edit" method="post">
+                <div class="control-group">
+                    <div>
+                       <input type="text" name="title" placeholder="标题" style="width:100%;"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div >
+                       <input type="text" name="summary" placeholder="简介" style="width:100%;"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div >
+                       <textarea name="contents" placeholder="正文内容" style="width:100%;height:50%"></textarea>
+                    </div>
+                </div>
+                <div style="float:right;"><button id="sb" type="submit" style="display:none;">1111</button></div>
+            </form>
+        </div>
+        <div class="span2">
+        <!--Sidebar content-->
+            <div class="row">
+                <div style="text-align: center;height:50%">
+                    <button class="tijiao" onclick="subbmitx()">提交</button>
+                </div>
+                <div style="text-align: center;height:50%">
+                    <button class="tijiao">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    function subbmitx(){
+        document.getElementById("myform").submit();
+    }
+</script>
+{% endblock %}
