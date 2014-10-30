@@ -6,22 +6,45 @@
     <div class="row-fluid">
         <div class="span2">
         <!--Sidebar content-->
-            <div style="text-align: center;">
-                <img src="static/image/touxiang.jpg" class="img-circle" width="50%"/>
-                <h3>cococo点点</h3>
-                <p>building blog</p>
+            <div class="row" style="position:fixed;">
+                <div style="text-align:center;">
+                    <img src="static/image/touxiang.jpg" class="img-circle" width="50%"/>
+                    <h3>cococo点点</h3>
+                </div>
+                <div style="text-align:center;margin-top:50%;">
+                    <ul>
+                        <li class="hot">2014/10/30</li>
+                        <li class="hot">2014/10/29</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="span6">
+        <div class="span8">
         <!--Sidebar content-->
-            {% for item in articles %}
-                <h1>{{item[2]}}</h1>
-                <p>{{item[3]}}<p>
-            {% endfor %}
+            <div class="row">
+                {% for item in articles %}
+                    <div class="wall">
+                        <h3>{{item[2]}}</h3>
+                        <pre>{{item[3]}}</pre>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="span4">
+        <div class="span2">
         <!--Sidebar content-->
-            123123
+            <div style="width:80%;">
+                <div id="tagbar">
+                    <div id="tagsList" style="word-break:break-all;">
+                        <span><a href="#" onclick="addtag('python')">python</a></span>
+                        <span><a href="#" onclick="addtag('c')">c</a></span>
+                        <span><a href="#" onclick="addtag('c++')">c++</a></span>
+                        <span><a href="#" onclick="addtag('linux')">linux</a></span>
+                        <span><a href="#" onclick="addtag('MFC')">MFC</a></span>
+                        <span><a href="#" onclick="addtag('server')">server</a></span>
+                        <span><a href="#" onclick="addtag('js')">js</a></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -31,4 +54,5 @@
 
 
 {% block script %}
+    <script src="static/js/tagcloud.js"></script>
 {% endblock %}

@@ -3,6 +3,7 @@
 import os
 import sys
 import web
+from markdown import markdown
 from jinja2 import Environment,FileSystemLoader
 
 from funbox.db import db
@@ -41,7 +42,7 @@ class edit:
     def GET(self):
         return render_template("edit.html")
     def POST(self):
-        data = web.input(title='', summary='', contents='')
+        data = web.input(title='', summary='', contents='',tag='')
         print data
         return data
 
