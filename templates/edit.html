@@ -29,17 +29,17 @@ blog edit
             <form id="myform" class="form-horizontal" action="/edit" method="post">
                 <div class="control-group">
                     <div>
-                       <input type="text" name="title" placeholder="标题" style="width:100%;"/>
+                       <input id="title" type="text" name="title" placeholder="标题" style="width:100%;"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <div >
-                       <input type="text" name="summary" placeholder="简介" style="width:100%;"/>
+                       <input id="summary" type="text" name="summary" placeholder="简介" style="width:100%;"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <div >
-                       <textarea name="contents" placeholder="正文内容" style="width:100%;height:50%"></textarea>
+                       <textarea id="contents" name="contents" placeholder="正文内容" style="width:100%;height:50%"></textarea>
                        <input type="text" id="tag" name="tag" style="display:none;"/>
                     </div>
                 </div>
@@ -67,7 +67,11 @@ blog edit
     function subbmitx(){
         var text = document.getElementById("tagselect").value;
         document.getElementById("tag").value = text;
-        document.getElementById("myform").submit();
+        if((document.getElementById("title").value == "")||(document.getElementById("contents").value == "")){
+            alert("请输入标题和正文！");
+        }else{
+            document.getElementById("myform").submit();
+        }
     }
     function addtag(tag){
         var text = document.getElementById("tagselect").value;

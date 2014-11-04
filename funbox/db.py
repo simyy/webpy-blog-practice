@@ -31,7 +31,7 @@ class dbHelper:
         except MySQLdb.Error, e:
             self.error_code = e.args[0]
             error_msg = 'MySQL error:', e.args[0], e.args[1]
-            logging.error(error_msg)
+            #logging.error(error_msg)
 
             if self._timecount < self._TIMEOUT:
                 interval = 5
@@ -73,10 +73,12 @@ class dbHelper:
           self._cur.execute("SET NAMES utf8")
           self._cur.execute(sql)
           self._conn.commit()
-          return self._conn.insert_id()
+          #return self._conn.insert_id()
+          return True
         except MySQLdb.Error, e:
           self.error_code = e.args[0]
           #logging.error("MySQL error:%s"%e)
+          print e
           return False
 
     def fetchAllRows(self):
