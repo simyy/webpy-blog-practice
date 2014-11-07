@@ -2,17 +2,10 @@
 #-*- encoding:utf-8 -*-
 
 import web
-web.ctx
-urls = (
-    '/','model.index',
-    '/image', 'model.image',
-    '/test','model.test',
-    '/login', 'model.login',
-    '/loginout', 'model.loginout',
-    '/edit', 'model.edit',
-)
+from blog.urls import urls
 
 #web.config.debug = False
+init
 app = web.application(urls, globals())
 
 if web.config.get('_session') is None:
