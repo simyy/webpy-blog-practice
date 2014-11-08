@@ -2,7 +2,7 @@
 #-*- encoding:utf-8 -*-
 
 urls = [
-    #'/','blog.views.index',
+    '/','blog.views.index',
     '/image', 'blog.views.image',
     '/test','blog.views.test',
     '/login', 'blog.views.login',

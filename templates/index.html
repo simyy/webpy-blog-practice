@@ -23,25 +23,26 @@
         <!--Sidebar content-->
             <div class="row">
                 {% for item in articles %}
-                    <div class="wall">
-                        <h3>{{item[2]}}</h3>
-                        <pre>{{item[3]}}</pre>
+                    <div>
+                        <pre id="articles"><h3>{{item[1]}}</h3><hr/>{{item[2]}}</pre>
                     </div>
                 {% endfor %}
+                <div class="btn-group" data-toggle="buttons-radio" style="float:right;padding:30px 0 30px 0;top:90%;">
+                  <button type="button" class="btn btn-primary" onclick="getPage(0)">上一页</button>
+                  <button type="button" class="btn btn-primary" onclick="getPage(1)">下一页</button>
+                </div>
             </div>
         </div>
         <div class="span2">
         <!--Sidebar content-->
             <div style="width:80%;">
                 <div id="tagbar">
-                    <div id="tagsList" style="word-break:break-all;">
-                        <span><a href="#" onclick="addtag('python')">python</a></span>
-                        <span><a href="#" onclick="addtag('c')">c</a></span>
-                        <span><a href="#" onclick="addtag('c++')">c++</a></span>
-                        <span><a href="#" onclick="addtag('linux')">linux</a></span>
-                        <span><a href="#" onclick="addtag('MFC')">MFC</a></span>
-                        <span><a href="#" onclick="addtag('server')">server</a></span>
-                        <span><a href="#" onclick="addtag('js')">js</a></span>
+                    <div style="word-break:break-all;top:100px;">
+                        <ul id="tags" style="position:fixed;">
+                            {% for item in tags %}
+                                <li><a href="">{{ item[0]}}</a><span class="badge badge-success">{{ item[1] }}</span></li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -54,5 +55,32 @@
 
 
 {% block script %}
-    <script src="static/js/tagcloud.js"></script>
+    <script>
+    function getPage(i) {
+        thisHREF = document.location.href;
+        var s = thisHREF.indexOf("?");
+        if (s < 0){
+            alert("index");
+            if ( i == 0 ){
+                return 0;
+            }else{
+                window.location.href = "/?num=2";
+                return 0;
+            }
+
+        }
+        tmpHPage = thisHREF.split("?");
+        num = tmpHPage[1];
+        tmp = num.replace(/num=/,"").replace(/#/,"");
+        if ( i == 0){
+            n = new Number(tmp);
+            n = n -1;
+            window.location.href = "/?num=" + n;
+        }else{
+            n = new Number(tmp);
+            n = n +1;
+            window.location.href = "/?num=" + n;
+        }
+    }
+    </script>
 {% endblock %}

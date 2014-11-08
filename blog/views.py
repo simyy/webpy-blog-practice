@@ -29,13 +29,20 @@ def render_template(template_name, **context):
     #jinja_env.update_template_context(context)
     return jinja_env.get_template(template_name).render(context)
 
-@addUrl('/')
+
 class index:
     def GET(self):
-        db.query('select * from articletab limit 0,2')
-        res = db.fetchAllRows()
-        #print res
-        return render_template("index.html", articles=res)
+        data = web.input(num='1')
+        print data.num
+        db.query(('select * from article limit %s, 2')% (2*(int(data.num)-1)))
+        articles = db.fetchAllRows()
+        if len(articles) == 0:
+            return 'error'
+        db.query('select name,num from tag')
+        tags = db.fetchAllRows()
+        print tags
+        return render_template("index.html", articles=articles, tags=tags)
+
 
 class test:
     def GET(self):
@@ -44,25 +51,47 @@ class test:
        session.count += 1
        return 'Hello, %s!' % session.count
 
+
 class edit:
     def GET(self):
         try:
             session = web.ctx.session
             username = session.username
-            print username,'123'
             if not username:
                 return web.redirect('/login')
         except Exception as e:
             return web.redirect('/login')
+        ''' get tag '''
+        db.query('select * from tag')
+        res = db.fetchAllRows()
+        if res == None:
+            res = []
         return render_template("edit.html")
     def POST(self):
-        data = web.input(title='', summary='', contents='',tag='')
+        data = web.input(title='', contents='',tag='')
+        ''' update tag '''
+        for tag in data.tag.split(';'):
+            db.query('select name from tag')
+            res = db.fetchAllRows()
+            if len(tag) == 0:
+                continue
+            if (tag,) not in res:
+                db.insert('insert into tag (name, num) values ("%s",1)'%tag)
+            else:
+                db.query('select id,num from tag where name="%s"'%tag)
+                res = db.fetchOneRow()
+                print res
+                db.update('update tag set num=%d where id=%d'%((res[1]+1),res[0]))
+        ''' update article '''
+        db.query('select * from article where title="%s"'%data.title)
+        res = db.fetchOneRow()
+        if res == None:
+            res = db.insert('insert into article (title, content, tag) values (\'%s\', \'%s\', \'%s\')'%(data.title, data.contents, data.tag))
+            if not res:
+                web.redirect('/edit')
+            return 'success'
+        return 'repeated title'
 
-        res = db.insert('insert into articletab (Author, Title, Content, ArticleType, Summary) values (\'%d\', \'%s\', \'%s\', \'%d\', \'%s\')'%(1, data.title, data.contents, 1, data.summary))
-        print res
-        if not res:
-            web.redirect('/edit')
-        return 'success'
 
 class login:
     def GET(self):
@@ -71,7 +100,7 @@ class login:
         session = web.ctx.session
         data = web.input(email='', passwd='')
         if data.email != '' and data.passwd != '':
-            db.query('select userPwd from usertab where userName=\'%s\''%data.email)
+            db.query('select userpasswd from user where username=\'%s\''%data.email)
             res = db.fetchOneRow()
             print res
             if res != None and res[0] == data.passwd:
@@ -80,6 +109,7 @@ class login:
                 return web.seeother("/edit")
             else:
                 return web.redirect('/login')
+
 
 class loginout:
     def GET(self):
