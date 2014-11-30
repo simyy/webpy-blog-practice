@@ -8,6 +8,8 @@ from markdown import markdown
 from jinja2 import Environment,FileSystemLoader
 from db import db
 import BeautifulSoup
+from xml.etree import ElementTree as et
+
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -52,6 +54,15 @@ def render_template(template_name, **context):
     #jinja_env.update_template_context(context)
     return jinja_env.get_template(template_name).render(context)
 
+def markdownhilite(item):
+    value = markdown(item)
+    value = '<div>' + value + '</div>'
+    s = et.fromstring(value)
+    for item in s.findall('p'):
+        if item.findall('code'):
+            item.attrib['class'] = 'codehilite'
+    value = et.tostring(s)
+    return value
 
 class detail:
     def GET(self):
@@ -60,13 +71,14 @@ class detail:
             return 'no articles'
         db.query('select * from article where id=%d'%int(id))
         res = db.fetchOneRow()
-        if len(res) < 1:
+        if res is None or len(res) < 1:
             return 'no articles'
         else:
             article = []
             for item in res:
                 if item == res[2]:
-                    article.append(markdown(item))
+                    value = markdownhilite(item)
+                    article.append(value)
                     continue
                 article.append(item)
             db.query('select name,num from tag')
@@ -94,10 +106,10 @@ class index:
                 article = []
                 for item in items:
                     if item == items[2]:
-                        tmp = markdown(item)
                         if (data.num == '1') and (items == res[0]):
-                            pass
+                            tmp = markdownhilite(item)
                         else:
+                            tmp = markdown(item)
                             s = tmp.find('\n')
                             if s > 80:
                                 tmp = BeautifulSoup.BeautifulSoup(tmp[0:80]).text
@@ -124,7 +136,7 @@ class test:
 
 
 class edit:
-    @Auth
+    #@Auth
     def GET(self):
         auth()
         ''' get tag '''

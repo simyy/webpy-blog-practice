@@ -240,3 +240,11 @@ color: #4ecdc4;
 .detail_article #detail_tag{
     float: right;
 }
+
+.codehilite  {
+    font-family: "Arial","微软雅黑", "Helvetica", "sans-serif";
+    background: rgba(4, 18, 27, 0.88);
+    border-radius: 3px;
+    color: #bfbfbf;
+    padding: 5 10 5 10;
+}
