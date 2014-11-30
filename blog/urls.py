@@ -8,5 +8,6 @@ urls = [
     '/login', 'blog.views.login',
     '/loginout', 'blog.views.loginout',
     '/edit', 'blog.views.edit',
+    '/detail', 'blog.views.detail',
 ]
 

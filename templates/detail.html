@@ -26,21 +26,17 @@
         <!--Sidebar content-->
             <div class="row">
                 {% for item in articles %}
-                    <div class="article">
-                        {% if item == articles[0] %}
-                            <a href="/detail?id={{item[0]}}"><h3>{{item[1]}}</h3></a>
-                            <pre id="articles">{{item[2]}}</pre>
-                            <i>{{item[3]}}-{{item[5]}}-({{item[6]}})</i>
-                        {% else %}
-                            <a href="/detail?id={{item[0]}}"><h3>{{item[1]}}</h3></a>
-                            <p id="articles">{{item[2]}}</p>
-                            <i >{{item[3]}}-{{item[4]}}-({{item[6]}})</i>
-                        {% endif %}
+                    <div class="detail_article">
+                        <h3 id="detail_title">{{item[1]}}</h3>
+                        <pre id="detail_content">{{item[2]}}</pre>
+                        <div id="detail_tag">
+                            <i>tag: {{item[3]}}</i>
+                            <i>post time: {{item[4]}}</i>
+                        </div>
                     </div>
                 {% endfor %}
                 <div class="btn-group" data-toggle="buttons-radio" style="position:fixed;float:right;padding-left: 69%;top:75%;">
-                  <button type="button" class="btn" onclick="getPage(0)">上一页</button>
-                  <button type="button" class="btn" onclick="getPage(1)">下一页</button>
+                  <button type="button" class="btn" onclick="javascript:history.back(-1);">返回</button>
                 </div>
             </div>
         </div>
@@ -68,33 +64,6 @@
 {% block script %}
     <script src="static/js/jquery.vticker.min.js"></script>
     <script>
-    function getPage(i) {
-        thisHREF = document.location.href;
-        var s = thisHREF.indexOf("?");
-        if (s < 0){
-            if ( i == 0 ){
-                return 0;
-            }else{
-                window.location.href = "/?num=2";
-                return 0;
-            }
-
-        }
-        tmpHPage = thisHREF.split("?");
-        num = tmpHPage[1];
-        tmp = num.replace(/num=/,"").replace(/#/,"");
-        if ( i == 0){
-            n = new Number(tmp);
-            if ( n == 1)
-                return 0;
-            n = n -1;
-            window.location.href = "/?num=" + n;
-        }else{
-            n = new Number(tmp);
-            n = n +1;
-            window.location.href = "/?num=" + n;
-        }
-    }
 
     $(function() {
             $('#scroller').vTicker({

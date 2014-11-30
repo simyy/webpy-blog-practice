@@ -4,7 +4,6 @@ from urls import urls
 import os
 
 def addUrl(url):
-    print __file__
     def addView(func):
         def wrapper(*args, **kw):
             #print func.__name__

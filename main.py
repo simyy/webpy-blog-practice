@@ -4,11 +4,15 @@
 import web
 from blog.urls import urls
 
-#web.config.debug = False
+web.config.debug = False
 app = web.application(urls, globals())
 
+db = web.database(dbn='mysql', db='blog', user='root', pw='123123')
+store = web.session.DBStore(db, 'sessions')
+
 if web.config.get('_session') is None:
-    session = web.session.Session(app, web.session.DiskStore('sessions'), {'count': 0})
+    #session = web.session.Session(app, web.session.DiskStore('sessions'), {'count': 0})
+    session = web.session.Session(app, store, {'count': 0})
     web.config._session = session
 else:
     session = web.config._session
