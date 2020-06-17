@@ -1,5 +1,6 @@
-# webpy blog
->a blog app writen in python by web.py
+# Webpy Blog Practice
+
+A blog app writen in python by web.py.
 
 ## what it depands
 * python2.7
